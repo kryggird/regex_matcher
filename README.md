@@ -12,7 +12,34 @@ To compile an example application, go to the repository folder, and run
 mkdir build
 cd build
 cmake ../CMakeLists.txt
+make
 ```
+
+This will build an executable called `regex_matcher`. The executable has three 
+functions. It can match from stdin a la `grep`:
+
+```bash
+$ printf 'foobar\nfoo\nbar' | ./regex_matcher --match 'fo*'
+foobar
+foo
+```
+
+It can print the bytecode of a particular regex:
+
+```bash
+$./regex_matcher --bytecode 'foo*'
+Split(3, 1)
+Bitset(...)
+Jump(-2)
+Character(f)
+Character(o)
+Split(1, 3)
+Character(o)
+Jump(-2)
+Match()
+```
+
+Or it can run some tests using the `--tests` flag.
 
 ## Api
 
